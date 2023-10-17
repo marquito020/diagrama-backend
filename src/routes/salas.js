@@ -88,7 +88,7 @@ router.get('/inSala/:tokenS', isLoggedIn, async (req, res) => {
     const inSala = '?room=' + tokenS;
     const inUs = '&username=' + tokenU;
     /* const xml = 'http://localhost:8080/model-UML' + inSala + inUs; */
-    const xml = 'https://diagrama-frontend.onrender.com/model-UML' + inSala + inUs;
+    const xml = 'https://91s7rrdx-8080.brs.devtunnels.ms/model-UML' + inSala + inUs;
     console.log(xml);
     res.redirect(xml);
 });
