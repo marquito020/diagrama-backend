@@ -1,0 +1,92 @@
+<header class="masthead2 d-flex">
+    <div class="container p-4">
+        <textarea id="outputTextArea" rows="10" cols="50"></textarea>
+
+        <!-- Botones con estilos -->
+        <div class="button-container">
+            <button id="javaButton" class="lang-button">Crear código Java</button>
+            <button id="phpButton" class="lang-button">Crear código PHP</button>
+            <button id="javascriptButton" class="lang-button">Crear código JavaScript</button>
+            <button id="pythonButton" class="lang-button">Crear código Python</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Función para realizar la solicitud Axios
+            function realizarSolicitudAxios(prompt) {
+                const client = axios.create({
+                    headers: {
+                        Authorization: 'Bearer ' + "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"
+                    }
+                });
+                const params = {
+                    prompt: prompt,
+                    model: "gpt-3.5-turbo-instruct",
+                    temperature: 0,
+                    max_tokens: 400,
+                };
+                client
+                    .post("https://api.openai.com/v1/completions", params)
+                    .then((response) => {
+                        console.log(response.data);
+                        console.log(response.data.choices[0].text);
+
+                        // Obtener el elemento TextArea
+                        var outputTextArea = document.getElementById("outputTextArea");
+
+                        // Establecer el contenido en el TextArea
+                        outputTextArea.value = response.data.choices[0].text;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
+
+            // Agregar eventos de clic a los botones
+            var javaButton = document.getElementById('javaButton');
+            javaButton.addEventListener('click', function() {
+                realizarSolicitudAxios("Convierte el diagrama de secuencias a un lenguaje estructurado de programación Java:\n{{sala.xml}}");
+            });
+
+            var phpButton = document.getElementById('phpButton');
+            phpButton.addEventListener('click', function() {
+                realizarSolicitudAxios("Convierte el diagrama de secuencias a un lenguaje estructurado de programación PHP:\n{{sala.xml}}");
+            });
+
+            var javascriptButton = document.getElementById('javascriptButton');
+            javascriptButton.addEventListener('click', function() {
+                realizarSolicitudAxios("Convierte el diagrama de secuencias a un lenguaje estructurado de programación JavaScript con todas sus clases:\n{{sala.xml}}");
+            });
+
+            var pythonButton = document.getElementById('pythonButton');
+            pythonButton.addEventListener('click', function() {
+                realizarSolicitudAxios("Convierte el diagrama de secuencias a un lenguaje de programación Python, crea todas sus clases:\n{{sala.xml}}");
+            });
+        });
+    </script>
+
+    <style>
+        /* Estilos para los botones */
+        .lang-button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .lang-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Estilos para el contenedor de los botones */
+        .button-container {
+            margin-top: 10px;
+        }
+    </style>
+</header>

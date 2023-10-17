@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg" style="background-color: #f7a103;">
+  <div class="container">
+  <a class="navbar-brand" href="/" style="color: black;">
+    <i class="fas fa-home" style="color: black;"></i> Inicio
+  </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+
+        {{#if user}}
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            SALAS
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/salas">Mis Salas</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/salas/add">Añadir Salas</a>
+            <a class="dropdown-item" href="/salas/salasCompartidas">Salas Compartidas</a>
+          </div>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/profile">Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Cerrar Session</a>
+        </li>
+        {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/signin">Iniciar Sesión</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/signup">Registrarse</a>
+        </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</nav>
