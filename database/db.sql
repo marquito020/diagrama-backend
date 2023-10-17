@@ -4,7 +4,7 @@ USE sw1pizarra; */
 
 -- TABLE USER
 -- all pasword wil be encrypted using SHA1
-CREATE TABLE users (
+/* CREATE TABLE users (
   id INT(11) NOT NULL,
   PRIMARY KEY (id),
   username VARCHAR(30) NOT NULL,
@@ -17,7 +17,7 @@ ALTER TABLE users
 
 ALTER TABLE users ADD COLUMN tokenU varchar(500);  
 
-SELECT * FROM users;
+SELECT * FROM users; */
 
 -- salas TABLE
 CREATE TABLE salas (
@@ -26,6 +26,7 @@ CREATE TABLE salas (
   title VARCHAR(100) NOT NULL,
   xml TEXT NULL,
   description TEXT,
+  tokenOPENAI varchar(500),
   user_id INT(11),
   created_at timestamp NOT NULL DEFAULT current_timestamp,
   CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES users(id)
